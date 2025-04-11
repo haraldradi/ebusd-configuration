@@ -45,6 +45,20 @@ model command {
   unit: unit;
 }
 
+/** Energie */
+@unit("kWh")
+@divisor(10)
+scalar enerk extends SIN;
+
+/** Energie */
+@unit("MWh")
+scalar enerM extends UIN;
+
+/** Energie */
+@unit("m³/h")
+@divisor(10)
+scalar flow extends UIN;
+
 /** Temperatur */
 @unit("°C")
 scalar temp1 extends SIN;
@@ -226,6 +240,15 @@ scalar bdate extends BDA;
 /** Status */
 scalar status extends UIN;
 
+@values(Values_temp)
+scalar status_temp extends status;
+
+@values(Values_status_1)
+scalar status1 extends status;
+
+@values(Values_status_23)
+scalar status23 extends status;
+
 /** Betriebsstunden (Teiler 10) */
 @unit("h")
 @divisor(100)
@@ -307,11 +330,13 @@ model tp_all {
 }
 
 enum Values_type {
-  none: 0x00,
+  IGN: 0x00,
   on_off: 0x02,
-  Zeit: 0x04,
+  UIN: 0x03,
+  SIN: 0x04,
   selection: 0x09,
-  Temperatur: 0x0d,
+  SIN10: 0x0d,
+  HCD: 0x1d,
   Dauer: 0x40,
   TemperaturSchwelle: 0x4d,
   TemperaturSoll: 0x8d,
@@ -326,5 +351,54 @@ enum Values_unit {
   h: 0x0a,
   min: 0x0c,
   kW: 0x10,
+  kWh: 0x12,
   hh_mm: 0x2a,
+  m3_h: 0x34, /** m³/h */
+  MWh: 0x3c,
+}
+
+enum Values_temp {
+  Abgeschaltet: 0,
+  Normal_Ladebetrieb: 1,
+  Komfort_Ladebetrieb: 2,
+  Zwangsdrosselung: 3,
+  Zwangsladung: 4,
+  Stoerung: 5,
+}
+
+enum Values_status_1 {
+  Abgeschaltet: 0,
+  Heizbetrieb: 1,
+  Vorlauf_Heizbetrieb: 2,
+  Extern_gesperrt: 3,
+  Kuehlbetrieb: 4,
+  Vorlaufzeit_Kuehlbetrieb: 5,
+  Vorlaufzeit_Abtaubetrieb: 6,
+  Abtaubetrieb: 7,
+  Stoerung: 8,
+  Abtropfen: 9,
+  DT_UEberwachung: 10,
+  Abtau_Vorheizung: 11,
+  Abtauen_1: 12,
+}
+
+enum Values_status_23 {
+  Abgeschaltet: 0,
+  Normal_Heizbetrieb: 1,
+  Spar_Heizbetrieb: 3,
+  Frostschutzbetrieb: 4,
+  Zwangsabnahme: 5,
+  Zwangsdrosselung: 6,
+  Ferienbetrieb: 7,
+  Partybetrieb: 8,
+  Normal_Kuehlbetrieb: 9,
+  Spar_Kuehlbetrieb: 11,
+  Stoerung: 12,
+  Handbetrieb: 13,
+  Schutz_Kuehlbetrieb: 14,
+  Partybetrieb_Kuehlen: 15,
+  Austrocknung_Aufheizphase: 16,
+  Austrocknung_Stationaerphase: 17,
+  Austrocknung_Abkuehlphase: 18,
+  Austrocknung_Endphase: 19,
 }

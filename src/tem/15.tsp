@@ -46,22 +46,6 @@ namespace _15 {
     Expert_Level: 2,
   }
 
-  enum Values_status_1 {
-    Abgeschaltet: 0,
-    Heizbetrieb: 1,
-    Vorlauf_Heizbetrieb: 2,
-    Extern_gesperrt: 3,
-    Kuehlbetrieb: 4,
-    Vorlaufzeit_Kuehlbetrieb: 5,
-    Vorlaufzeit_Abtaubetrieb: 6,
-    Abtaubetrieb: 7,
-    Stoerung: 8,
-    Abtropfen: 9,
-    DT_UEberwachung: 10,
-    Abtau_Vorheizung: 11,
-    Abtauen_1: 12,
-  }
-
   enum Values_status_2 {
     Aus: 0,
     Automatik: 1,
@@ -177,15 +161,6 @@ namespace _15 {
     Luft_WP_Reversible_Tandem_mit_modulierender_zweiter_Stufe: 14,
   }
 
-  enum Values_temp {
-    Abgeschaltet: 0,
-    Normal_Ladebetrieb: 1,
-    Komfort_Ladebetrieb: 2,
-    Zwangsdrosselung: 3,
-    Zwangsladung: 4,
-    Stoerung: 5,
-  }
-
   enum Values_status_14 {
     keine_Ladung: 0,
     Automatik: 1,
@@ -246,27 +221,6 @@ namespace _15 {
     mit_Umlenkventil: 2,
     mit_Ladepumpe_und_Zirkulationspumpe: 3,
     mit_Umlenkventil_und_Zirkulationspumpe: 4,
-  }
-
-  enum Values_status_23 {
-    Abgeschaltet: 0,
-    Normal_Heizbetrieb: 1,
-    Spar_Heizbetrieb: 3,
-    Frostschutzbetrieb: 4,
-    Zwangsabnahme: 5,
-    Zwangsdrosselung: 6,
-    Ferienbetrieb: 7,
-    Partybetrieb: 8,
-    Normal_Kuehlbetrieb: 9,
-    Spar_Kuehlbetrieb: 11,
-    Stoerung: 12,
-    Handbetrieb: 13,
-    Schutz_Kuehlbetrieb: 14,
-    Partybetrieb_Kuehlen: 15,
-    Austrocknung_Aufheizphase: 16,
-    Austrocknung_Stationaerphase: 17,
-    Austrocknung_Abkuehlphase: 18,
-    Austrocknung_Endphase: 19,
   }
 
   enum Values_status_24 {
@@ -481,8 +435,7 @@ namespace _15 {
       parameters: parameter1;
 
       /** WP Status */
-      @values(Values_status_1)
-      status: status;
+      status: status1;
     }
 
     /** Betriebswahl Wärmeerzeuger 09-075 */
@@ -1565,8 +1518,7 @@ namespace _15 {
       parameters: parameter1;
 
       /** Zustand Warmwasserregelung */
-      @values(Values_temp)
-      temp: status;
+      temp: status_temp;
     }
   }
   namespace Ww_param1 {
@@ -1990,8 +1942,7 @@ namespace _15 {
       parameters: parameter1;
 
       /** Zustand Heizkreisregelung */
-      @values(Values_status_23)
-      status: status;
+      status: status23;
     }
   }
   namespace Hk_timeprogramm {

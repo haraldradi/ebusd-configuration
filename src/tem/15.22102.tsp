@@ -9,8 +9,8 @@ namespace Tem;
 // MF=TEM;ID=22102;SW=0472;HW=0110  (Ochsner OTE 2.0)
 
 namespace ochsner {
-  /** global */
-  namespace g {
+  /** common */
+  namespace c {
     /** default *r */
     @zz(0x15)
     @base(0x6, 0x21, 0)
@@ -35,23 +35,23 @@ namespace ochsner {
     /** [00-007] Vorlauftemperatur Wärmeerzeuger */
     @inherit(r)
     @ext(0x87, 0, 0x40)
-    model FlowTemp {
+    model FlowTempGenerator {
       parameter: parameter_temp10;
       value: temp10;
     }
 
-    /** [00-008] Rücklauftemperatur */
+    /** [00-008] Rücklauftemperatur Wärmeerzeuger */
     @inherit(r)
     @ext(0x88, 0, 0x40)
-    model ReturnTemp {
+    model ReturnTempGenerator {
       parameter: parameter_temp10;
       value: temp10;
     }
 
-    /** [00-096] ??? Vorlauftemperatur 00-002 */
+    /** [00-096] Vorlauftemperatur Anlage */
     @inherit(r)
     @ext(0xe0, 0, 0x40)
-    model UnknownTemp1 {
+    model FlowTemp {
       parameter: parameter_temp10;
       value: temp10;
     }
@@ -93,13 +93,15 @@ namespace ochsner {
       parameter: parameter1;
       value: SIN;
     }
-    /** [02-070] ??? */
+
+    /** [02-070] Datum */
     @inherit(r)
     @ext(0xc6, 0, 0x40)
-    model UnknownValue3 {
+    model Date {
       parameter: parameter1;
-      value: SIN;
+      value: DAY;
     }
+
     /** [02-071] ??? */
     @inherit(r)
     @ext(0xc7, 0, 0x40)
@@ -107,13 +109,15 @@ namespace ochsner {
       parameter: parameter1;
       value: SIN;
     }
-    /** [02-072] ??? */
+
+    /** [02-072] Uhrzeit */
     @inherit(r)
     @ext(0xc8, 0, 0x40)
-    model UnknownValue5 {
+    model Time {
       parameter: parameter1;
-      value: SIN;
+      value: MIN;
     }
+
     /** [02-073] ??? */
     @inherit(r)
     @ext(0xc9, 0, 0x40)
@@ -257,8 +261,8 @@ namespace ochsner {
     }
   }
 
-  /** mixer circuit */
-  namespace mc {
+  /** generator */
+  namespace g {
     /** default *r */
     @zz(0x15)
     @base(0x6, 0x21, 0x7d)

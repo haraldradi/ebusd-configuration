@@ -353,7 +353,8 @@ enum Values_unit {
   min: 0x0c,
   kW: 0x10,
   kWh: 0x12,
-  hh_mm: 0x2a,
+  dd_mm_yyyy: 0x28, /* Type: DAY */
+  hh_mm: 0x2a, /* Type: MIN */
   m3_h: 0x34, /** m³/h */
   MWh: 0x3c,
 }

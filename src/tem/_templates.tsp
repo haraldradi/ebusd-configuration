@@ -337,6 +337,7 @@ enum Values_type {
   selection: 0x09,
   SIN10: 0x0d,
   HCD: 0x1d,
+  NTS: 0x1e, /* ??? */
   Dauer: 0x40,
   TemperaturSchwelle: 0x4d,
   TemperaturSoll: 0x8d,

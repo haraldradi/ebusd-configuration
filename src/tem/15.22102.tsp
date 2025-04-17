@@ -47,6 +47,103 @@ namespace ochsner {
       parameter: parameter_temp10;
       value: temp10;
     }
+
+    /** [00-096] ??? Vorlauftemperatur 00-002 */
+    @inherit(r)
+    @ext(0xe0, 0, 0x40)
+    model UnknownTemp1 {
+      parameter: parameter_temp10;
+      value: temp10;
+    }
+  }
+
+  /** unknown1 */
+  namespace u1 {
+    /** default *r */
+    @zz(0x15)
+    @base(0x6, 0x21, 0x02)
+    model r {}
+
+    /** [02-053] Status Wärmeerzeugerregelung */
+    @inherit(r)
+    @ext(0xb5, 0, 0x40)
+    model Status {
+      parameter: parameter1;
+      value: status1;
+    }
+
+    /** [02-050] ???? */
+    @inherit(r)
+    @ext(0xb2, 0, 0x40)
+    model UnknownValue0 {
+      parameter: parameter2;
+      value: IGN;
+    }
+    /** [02-068] ??? */
+    @inherit(r)
+    @ext(0xc4, 0, 0x40)
+    model UnknownValue1 {
+      parameter: parameter1;
+      value: SIN;
+    }
+    /** [02-069] ??? */
+    @inherit(r)
+    @ext(0xc5, 0, 0x40)
+    model UnknownValue2 {
+      parameter: parameter1;
+      value: SIN;
+    }
+    /** [02-070] ??? */
+    @inherit(r)
+    @ext(0xc6, 0, 0x40)
+    model UnknownValue3 {
+      parameter: parameter1;
+      value: SIN;
+    }
+    /** [02-071] ??? */
+    @inherit(r)
+    @ext(0xc7, 0, 0x40)
+    model UnknownValue4 {
+      parameter: parameter1;
+      value: SIN;
+    }
+    /** [02-072] ??? */
+    @inherit(r)
+    @ext(0xc8, 0, 0x40)
+    model UnknownValue5 {
+      parameter: parameter1;
+      value: SIN;
+    }
+    /** [02-073] ??? */
+    @inherit(r)
+    @ext(0xc9, 0, 0x40)
+    model UnknownValue6 {
+      parameter: parameter1;
+      value: SIN;
+    }
+  }
+
+  /** unknown2 */
+  namespace u2 {
+    /** default *r */
+    @zz(0x15)
+    @base(0x6, 0x21, 0x04)
+    model r {}
+
+    /** [04-001] ??? */
+    @inherit(r)
+    @ext(0x81, 0, 0x40)
+    model UnknownValue0 {
+      parameter: command;
+      value: NTS;
+    }
+    /** [04-005] ??? */
+    @inherit(r)
+    @ext(0x85, 0, 0x40)
+    model UnknownValue1 {
+      parameter: command;
+      value: NTS;
+    }
   }
 
   /** heating circuit */

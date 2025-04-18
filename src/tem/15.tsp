@@ -161,21 +161,6 @@ namespace _15 {
     Luft_WP_Reversible_Tandem_mit_modulierender_zweiter_Stufe: 14,
   }
 
-  enum Values_status_14 {
-    keine_Ladung: 0,
-    Automatik: 1,
-    Normaltemperatur: 2,
-    Gemae_Fuehlerkreis: 5,
-  }
-
-  enum Values_status_15 {
-    nicht_aktiv: 0,
-    mit_Ladepumpe: 1,
-    mit_Umlenkventil: 2,
-    mit_Ladepumpe_und_Zirkulationspumpe: 3,
-    mit_Umlenkventil_und_Zirkulationspumpe: 4,
-  }
-
   enum Values_status_16 {
     Zeitabhaengig: 0,
     Temperaturabhaengig: 1,
@@ -1534,10 +1519,9 @@ namespace _15 {
     @ext(0x80, 0, 0xe)
     model Betriebswahl {
       parameters: parameter1;
-
+      
       /** Betriebswahl Warmwasserfunktion */
-      @values(Values_status_14)
-      status: status;
+      status: status14;
     }
 
     /** Normal Warmwassertemperatur 05-051 */
@@ -1557,8 +1541,7 @@ namespace _15 {
       parameters: parameter1;
 
       /** Mit dieser Einstellung kann ein entsprechend definierter Applikationstyp vorgewählt werden */
-      @values(Values_status_15)
-      status: status;
+      status: status15;
     }
   }
   namespace Ww_param2 {

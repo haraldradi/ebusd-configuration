@@ -246,8 +246,17 @@ scalar status_temp extends status;
 @values(Values_status_1)
 scalar status1 extends status;
 
+@values(Values_status_14)
+scalar status14 extends status;
+
+@values(Values_status_15)
+scalar status15 extends status;
+
 @values(Values_status_23)
 scalar status23 extends status;
+
+@values(Values_status_39)
+scalar status39 extends status;
 
 /** Betriebsstunden (Teiler 10) */
 @unit("h")
@@ -340,7 +349,7 @@ enum Values_type {
   NTS: 0x1e, /* ??? */
   Dauer: 0x40,
   TemperaturSchwelle: 0x4d,
-  TemperaturSoll: 0x8d,
+  temp10: 0x8d, /* Solltemperatur */
   range: 0xc0,
 }
 
@@ -384,6 +393,21 @@ enum Values_status_1 {
   Abtauen_1: 12,
 }
 
+enum Values_status_14 {
+  keine_Ladung: 0,
+  Automatik: 1,
+  Normaltemperatur: 2,
+  Gemae_Fuehlerkreis: 5,
+}
+
+enum Values_status_15 {
+  nicht_aktiv: 0,
+  mit_Ladepumpe: 1,
+  mit_Umlenkventil: 2,
+  mit_Ladepumpe_und_Zirkulationspumpe: 3,
+  mit_Umlenkventil_und_Zirkulationspumpe: 4,
+}
+
 enum Values_status_23 {
   Abgeschaltet: 0,
   Normal_Heizbetrieb: 1,
@@ -403,4 +427,9 @@ enum Values_status_23 {
   Austrocknung_Stationaerphase: 17,
   Austrocknung_Abkuehlphase: 18,
   Austrocknung_Endphase: 19,
+}
+
+enum Values_status_39 {
+  Notbetrieb_reduziert: 1,
+  Notbetrieb_normal: 3,
 }

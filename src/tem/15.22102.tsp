@@ -9,8 +9,8 @@ namespace Tem;
 // MF=TEM;ID=22102;SW=0472;HW=0110  (Ochsner OTE 2.0)
 
 namespace ochsner {
-  /** common */
-  namespace c {
+  /** operation */
+  namespace o {
     /** default *r */
     @zz(0x15)
     @base(0x6, 0x21, 0)
@@ -57,8 +57,8 @@ namespace ochsner {
     }
   }
 
-  /** unknown1 */
-  namespace u1 {
+  /** config */
+  namespace c {
     /** default *r */
     @zz(0x15)
     @base(0x6, 0x21, 0x02)
@@ -76,9 +76,10 @@ namespace ochsner {
     @inherit(r)
     @ext(0xb2, 0, 0x40)
     model UnknownValue0 {
-      parameter: parameter2;
-      value: IGN;
+      parameter: parameter1;
+      value: status;
     }
+    
     /** [02-068] ??? */
     @inherit(r)
     @ext(0xc4, 0, 0x40)
@@ -114,16 +115,16 @@ namespace ochsner {
     @inherit(r)
     @ext(0xc8, 0, 0x40)
     model Time {
-      parameter: parameter1;
+      parameter: parameter_time;
       value: MIN;
     }
 
-    /** [02-073] ??? */
+    /** [02-073] Wochentag */
     @inherit(r)
     @ext(0xc9, 0, 0x40)
-    model UnknownValue6 {
-      parameter: parameter1;
-      value: SIN;
+    model Weekday {
+      parameter: parameter_wd;
+      value: BDY;
     }
   }
 
@@ -147,6 +148,50 @@ namespace ochsner {
     model UnknownValue1 {
       parameter: command;
       value: NTS;
+    }
+  }
+
+  /** status */
+  namespace s {
+    /** default *r */
+    @zz(0x15)
+    @base(0x6, 0x21, 0x06)
+    model r {}
+
+    /** [06-014] Betriebsart Notbetrieb */
+    @inherit(r)
+    @ext(0x8e, 0, 0x40)
+    model EmergencyMode {
+      parameter: parameter1;
+      value: status39;
+    }
+  }
+
+  /** hot water */
+  namespace hw {
+    /** default *r */
+    @zz(0x15)
+    @base(0x6, 0x21, 0x65)
+    model r {}
+
+    /** [05-051] Normal Warmwassertemperatur */
+    @inherit(r)
+    @ext(0x80, 0, 0xe)
+    model NormalHotWaterTemp {
+      parameters: parameter_temp10;
+
+      /** Mit dieser Einstellung wird der Warmwasser Sollwert eingestellt */
+      status: temp10;
+    }
+
+    /** [05-076] Applikationstyp Warmwasserbereitung */
+    @inherit(r)
+    @ext(0x81, 0, 0xe)
+    model HotWaterAppType {
+      parameters: parameter1;
+
+      /** Mit dieser Einstellung kann ein entsprechend definierter Applikationstyp vorgewählt werden */
+      status: status15;
     }
   }
 
@@ -196,7 +241,7 @@ namespace ochsner {
     @inherit(r)
     @ext(0x84, 0, 0x08)
     @poll(9)
-    model TargetRoomTemp {
+    model DesiredRoomTemp {
       parameter: parameter_temp10;
       value: temp10;
     }
@@ -212,7 +257,7 @@ namespace ochsner {
     /** [01-002] Heizkreis Vorlauftemperatur Sollwert */
     @inherit(r)
     @ext(0x86, 0, 0x08)
-    model TargetFlowTemp {
+    model DesiredFlowTemp {
       parameter: parameter_temp10;
       value: temp10;
     }
@@ -243,20 +288,24 @@ namespace ochsner {
       value: status_temp;
     }
 
-    /** [00-004] Warmwasser */
+    /** [00-004] Warmwassertemperatur */
     @inherit(r)
     @ext(0x81, 0, 0x0e)
     @poll(9)
     model HotWaterTemp {
       parameter: parameter_temp10;
+
+      /** Obere Warmwasser Speichertemperatur */
       value: temp10;
     }
 
-    /** [01-004] Warmwasser Sollwert */
+    /** [01-004] Warmwassertemperatur Sollwert */
     @inherit(r)
     @ext(0x82, 0, 0x0e)
-    model TargetHotWaterTemp {
+    model DesiredHotWaterTemp {
       parameter: parameter_temp10;
+
+      /** Berechneter Sollwert für die Warmwassertemperatur */
       value: temp10;
     }
   }
@@ -288,7 +337,7 @@ namespace ochsner {
     /** [01-007] Wärmeerzeuger Vorlauftemperatur Sollwert */
     @inherit(r)
     @ext(0x82, 0, 0x02)
-    model TargetFlowTemp {
+    model DesiredFlowTemp {
       parameter: parameter_temp10;
       value: temp10;
     }

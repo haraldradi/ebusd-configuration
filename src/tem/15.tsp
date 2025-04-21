@@ -229,16 +229,6 @@ namespace _15 {
     Austrocknung_Endphase: 19,
   }
 
-  enum Values_status_25 {
-    Automatikbetrieb_1: 1,
-    Automatikbetrieb_2: 2,
-    Automatikbetrieb_3: 3,
-    Normalbetrieb: 4,
-    Sparbetrieb: 5,
-    Standbybetrieb_WW_frei: 6,
-    Handbetrieb_Heizen: 7,
-  }
-
   enum Values_status_26 {
     nicht_aktiv1: 0,
     Pumpenkreis_mit_Kuehlung: 2,
@@ -2311,8 +2301,7 @@ namespace _15 {
     model Betriebswahl {
       parameters: parameter1;
 
-      @values(Values_status_25)
-      status: status;
+      status: status25;
     }
 
     /** Normal Raumtemperatur Heizbetrieb 03-051 */

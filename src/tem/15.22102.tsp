@@ -209,7 +209,7 @@ namespace ochsner {
       parameter: parameter1;
 
       /** Stellgrösse für eine Warmwasser Ladepumpe oder Umlenkventil */
-      value: SCH;
+      value: UIN;
     }  
   }
 

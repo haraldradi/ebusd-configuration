@@ -55,7 +55,7 @@ scalar enerk extends SIN;
 scalar enerM extends UIN;
 
 /** Energie */
-@unit("m³/h")
+@unit("l/min")
 @divisor(10)
 scalar flow extends UIN;
 
@@ -65,7 +65,16 @@ scalar temp1 extends SIN;
 
 /** Temperatur */
 model temp1_1b {
-  sch: SCH;
+  @unit("°C")
+  value: SCH;
+  @maxLength(1) ign: IGN;
+}
+
+/** Temperatur (Teiler 2) */
+model temp2_1b {
+  @unit("°C")
+  @divisor(2)
+  value: SCH;
   @maxLength(1) ign: IGN;
 }
 
@@ -96,13 +105,31 @@ scalar min_temp1 extends temp1;
 
 /** Maximum */
 model max_temp1_1b {
-  sch: SCH;
+  @unit("°C")
+  value: SCH;
   @maxLength(1) ign: IGN;
 }
 
 /** Minimum */
 model min_temp1_1b {
-  sch: SCH;
+  @unit("°C")
+  value: SCH;
+  @maxLength(1) ign: IGN;
+}
+
+/** Maximum */
+model max_temp2_1b {
+  @unit("°C")
+  @divisor(2)
+  value: SCH;
+  @maxLength(1) ign: IGN;
+}
+
+/** Minimum */
+model min_temp2_1b {
+  @unit("°C")
+  @divisor(2)
+  value: SCH;
   @maxLength(1) ign: IGN;
 }
 
@@ -123,6 +150,12 @@ scalar max_temp2 extends temp2;
 
 /** Minimum */
 scalar min_temp2 extends temp2;
+
+/** Maximum */
+scalar max_temp256 extends temp256;
+
+/** Minimum */
+scalar min_temp256 extends temp256;
 
 /** Maximum */
 scalar max_time extends MIN;
@@ -189,6 +222,13 @@ model parameter_temp1_1b {
   min: min_temp1_1b;
 }
 
+/** ParameterTemp1 */
+model parameter_temp2_1b {
+  command: command;
+  max: max_temp2_1b;
+  min: min_temp2_1b;
+}
+
 /** ParameterTemp10 */
 model parameter_temp10 {
   command: command;
@@ -208,6 +248,13 @@ model parameter_temp2 {
   command: command;
   max: max_temp2;
   min: min_temp2;
+}
+
+/** ParameterTemp256 */
+model parameter_temp256 {
+  command: command;
+  max: max_temp256;
+  min: min_temp256;
 }
 
 /** ParameterTime */
@@ -254,6 +301,9 @@ scalar status15 extends status;
 
 @values(Values_status_23)
 scalar status23 extends status;
+
+@values(Values_status_25)
+scalar status25 extends status;
 
 @values(Values_status_39)
 scalar status39 extends status;
@@ -339,7 +389,8 @@ model tp_all {
 }
 
 enum Values_type {
-  IGN: 0x00,
+  SIN2: 0x00,
+  SCH2: 0x01,
   on_off: 0x02,
   UIN: 0x03,
   SIN: 0x04,
@@ -427,6 +478,16 @@ enum Values_status_23 {
   Austrocknung_Stationaerphase: 17,
   Austrocknung_Abkuehlphase: 18,
   Austrocknung_Endphase: 19,
+}
+
+enum Values_status_25 {
+  Automatikbetrieb_1: 1,
+  Automatikbetrieb_2: 2,
+  Automatikbetrieb_3: 3,
+  Normalbetrieb: 4,
+  Sparbetrieb: 5,
+  Standbybetrieb_WW_frei: 6,
+  Handbetrieb_Heizen: 7,
 }
 
 enum Values_status_39 {

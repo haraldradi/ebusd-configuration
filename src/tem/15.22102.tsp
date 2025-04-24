@@ -14,15 +14,14 @@ namespace ochsner {
   model r {}
 
   @write
-  @zz(0x15)
-  @base(0x06, 0x21)
+  @zz(0x10)
+  @base(0x06, 0x23)
   model w {}
 
   namespace _00 {  
       /** [00-000] Außentemperatur */
     @inherit(r)
     @ext(0x00, 0x80, 0x00, 0x40)
-    @poll(9)
     model OutsideTemp {
       parameter: parameter_temp10;
       value: temp10;
@@ -43,11 +42,10 @@ namespace ochsner {
       parameter: parameter_temp10;
       value: temp10;
     }
-    
+
     /** [00-001] Raumtemperatur */
     @inherit(r)
     @ext(0x77, 0x83, 0x00, 0x08)
-    @poll(9)
     model RoomTemp {
       parameter: parameter_temp10;
       value: temp10;
@@ -64,7 +62,6 @@ namespace ochsner {
     /** [00-004] Warmwassertemperatur */
     @inherit(r)
     @ext(0x00, 0x84, 0x00, 0x40)
-    @poll(9)
     model HotWaterTemp {
       parameter: parameter_temp10;
 
@@ -629,14 +626,6 @@ namespace ochsner {
       value: temp10;
     }
 
-    /** [05-051] Normal Warmwassertemperatur */
-    @inherit(w)
-    @ext(0x65, 0x80, 0x00, 0x0e)
-    model SetNormalHotWaterTemp_ {
-      /** Mit dieser Einstellung wird der Warmwasser Sollwert eingestellt */
-      value: temp10;
-    }
-    
     /** [05-061] ??? */
     @inherit(r)
     @ext(0x05, 0xbd, 0x00, 0x4e)

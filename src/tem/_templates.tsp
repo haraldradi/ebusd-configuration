@@ -426,12 +426,15 @@ enum Values_temp {
   Zwangsdrosselung: 3,
   Zwangsladung: 4,
   Stoerung: 5,
+  Spar_Ladebetrieb: 8,
+  Elektro_Nachladung: 10,
+  Ladungsabbruch: 11,
 }
 
 enum Values_status_1 {
   Abgeschaltet: 0,
   Heizbetrieb: 1,
-  Vorlauf_Heizbetrieb: 2,
+  Vorlaufzeit_Heizbetrieb: 2,
   Extern_gesperrt: 3,
   Kuehlbetrieb: 4,
   Vorlaufzeit_Kuehlbetrieb: 5,
@@ -439,9 +442,23 @@ enum Values_status_1 {
   Abtaubetrieb: 7,
   Stoerung: 8,
   Abtropfen: 9,
-  DT_UEberwachung: 10,
+  Abtausperrzeit: 10,
   Abtau_Vorheizung: 11,
   Abtauen_1: 12,
+  Abtauen_2: 13,
+  Abtauen_3: 14,
+  Alarm: 15,
+  Stoerung_2: 16,
+  Blockiert: 17,
+  TWVmax_Abschaltung: 21,
+  TWVsoll_Abschaltgun: 22,
+  TQEmax_Abschaltung: 23,
+  TQAmin_Abschaltung: 24,
+  Bivalentabschaltung: 26,
+  Minimale_Auszeit: 28,
+  Minimale_Einzeit: 29,
+  Passivkuehlung: 36,
+  Heizbetrieb_angefordert: 37,
 }
 
 enum Values_status_14 {
@@ -488,6 +505,7 @@ enum Values_status_25 {
   Sparbetrieb: 5,
   Standbybetrieb_WW_frei: 6,
   Handbetrieb_Heizen: 7,
+  Handbetrieb_Kuehlen: 8,
 }
 
 enum Values_status_39 {
